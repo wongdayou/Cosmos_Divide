@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - weapon
+  - Enemy
+  - Score
+  - LoadingBar
+  - GM
+  - Ship
+  - FirePoint
+  - Blue
+  - Red
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Background
+  - Water
+  - UI
+  - Red
+  - Blue
+  - Minimap
+  - Red Bullet
+  - Blue Bullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2942032065
+    locked: 0
+  - name: Stars
+    uniqueID: 144847745
+    locked: 0
+  - name: MinimapIcons
+    uniqueID: 2974814069
+    locked: 0
+  - name: Ships
+    uniqueID: 1015229633
+    locked: 0
+  - name: effects
+    uniqueID: 3131386139
+    locked: 0
+  - name: bullets
+    uniqueID: 420641747
+    locked: 0
+  - name: powerups
+    uniqueID: 64571923
+    locked: 0

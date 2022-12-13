@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284331ec2a9b9ca49b6ad2dd62bc3262, type: 3}
+  m_Name: FSRT-1
+  m_EditorClassIdentifier: 
+  maxHealth: 250
+  load: 2
+  cost: 200
+  description: A small space fighter jet that is equipped with a rotary turret.
+  speed: 3
+  rotationSpeed: 100
+  type: 1
+  numOfTurrets: 1
+  numOfDeploymentPods: 0
+  defeatScore: 0
+  deathExplosion: {fileID: 1913958834233760530, guid: bacc4418dc9910b439a026d89cb40d50, type: 3}
+  deathExplosionSound: DeathExplosionSmall
+  tooCloseDistance: 3
+  safeDistance: 6
