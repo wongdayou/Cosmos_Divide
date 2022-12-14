@@ -5,9 +5,11 @@ using HelperClasses;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public enum WaveState { SPAWNING, WAITING, COUNTDOWN };
+    // WAITING: waiting for the player to kill off all enemies
+    // COUNTDOWN: countdown to the start of the next wave
+    public enum WaveState { SPAWNING, WAITING, COUNTDOWN, END };
 
-    public GameMaster gm;
+    static GameMaster gm;
     public float countdownTime = 5f;
     public float searchRate = 2f;
     private float waveCountdown;
@@ -16,17 +18,62 @@ public class WaveSpawner : MonoBehaviour
     public Transform target;
     protected int waveCounter = 0;
 
+
+
     [System.Serializable]
     public class Wave{
         public string name;
         public WaveEnemyInfo[] waveEnemies;
         public GameObject boss;
         public float bossSpawnTime = 60f;
+        public int numOfEnemies;
+
+        public void GetNumOfEnemies () {
+            int numOfTypesOfEnemies = waveEnemies.Length;
+            int totalNumOfEnemies = 0;
+            for (int i = 0; i < numOfTypesOfEnemies; i ++){
+                totalNumOfEnemies += waveEnemies[i].count;
+            }
+            numOfEnemies = totalNumOfEnemies;
+        }
     }
+
+
+
+    [System.Serializable]
+    public class WaveEnemyInfo {
+        public GameObject enemy;
+        public int count;
+        public float cooldown;
+    }
+
+
+
 
     public Wave[] waves;
     private WaveState waveState = WaveState.COUNTDOWN;
     public SpawnPoint[] spawnPoints;
+
+
+    LevelManager levelManager;
+
+
+
+    private void Awake() {
+        if (gm == null){
+            gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+            if (gm == null){
+                Debug.LogError("WaveSpawner: GameMaster not found (Awake())");
+            }
+        }
+
+        levelManager = this.gameObject.GetComponent<LevelManager>();
+        if (levelManager == null){
+            Debug.LogError("WaveSpawner: no levelManager found");
+        }
+    }
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +82,9 @@ public class WaveSpawner : MonoBehaviour
         if (spawnPoints.Length <= 0){
             Debug.LogError("WaveSpawner: no spawn points!");
         }
-        gm = FindObjectOfType<GameMaster>();
-        if (gm == null){
-            Debug.Log("WaveSpawner: GameMaster not found!");
-        }
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -47,16 +92,16 @@ public class WaveSpawner : MonoBehaviour
         switch (waveState) {
             case WaveState.SPAWNING: return;
             case WaveState.WAITING: 
-                if (searchCountdown <= 0f) {
-                    if (GameObject.FindGameObjectWithTag("Enemy") == null){
-                        WaveCompleted();
-                    }
-                    searchCountdown = searchRate;
-                }
-                else {
-                    searchCountdown -= Time.deltaTime;
-                }
-                break;
+                // if (searchCountdown <= 0f) {
+                //     if (GameObject.FindGameObjectWithTag("Enemy") == null){
+                //         WaveCompleted();
+                //     }
+                //     searchCountdown = searchRate;
+                // }
+                // else {
+                //     searchCountdown -= Time.deltaTime;
+                // }
+                // break;
 
             case WaveState.COUNTDOWN: 
                 if (waveCountdown <= 0) {
@@ -67,21 +112,33 @@ public class WaveSpawner : MonoBehaviour
                     waveCountdown -= Time.deltaTime;
                 }
                 break;
+
+            case WaveState.END:
+                levelManager.EndLevel();
+                break;
         }
     }
 
+
+
     void WaveCompleted() {
-        waveState = WaveState.COUNTDOWN;
-        waveCountdown = countdownTime;
+        
         if (nextWave + 1 > waves.Length - 1) {
-            nextWave = 0;
             Debug.Log("All waves cleared");
+            waveState = WaveState.END;
         }
         else {
+            waveState = WaveState.COUNTDOWN;
+            waveCountdown = countdownTime;
             nextWave ++;
+            Debug.Log("Spawning Next Wave");
         }
+
         return;
     }
+
+
+
 
     IEnumerator SpawnWave(Wave _wave){
         //TODO 
@@ -110,6 +167,9 @@ public class WaveSpawner : MonoBehaviour
         yield return false;
     }
 
+
+
+
     IEnumerator SpawnEnemy(WaveEnemyInfo _waveEnemy){
         //if -1 then spawn infinitely until player dies
         if (_waveEnemy.count == -1){
@@ -126,7 +186,7 @@ public class WaveSpawner : MonoBehaviour
                     CreateGameObject(_waveEnemy.enemy);
                     
                 }
-                yield return new WaitForSeconds( 1f/_waveEnemy.spawnRate );
+                yield return new WaitForSeconds( _waveEnemy.cooldown );
             }
         }
 
@@ -137,7 +197,7 @@ public class WaveSpawner : MonoBehaviour
                 CreateGameObject(_waveEnemy.enemy);
                 i++;
             }
-            yield return new WaitForSeconds( 1f/_waveEnemy.spawnRate );
+            yield return new WaitForSeconds( _waveEnemy.cooldown );
             
         }
 
@@ -147,6 +207,10 @@ public class WaveSpawner : MonoBehaviour
         }
         yield return false;
     }
+
+
+
+
 
     //function to Create a ship (gameObject) at a random spawn point
     private void CreateGameObject (GameObject _go) {
@@ -163,7 +227,24 @@ public class WaveSpawner : MonoBehaviour
         
         //Debug.Log("Creating ship");
         GameObject newShip = Instantiate(_go, _sp, _spr);
-        newShip.GetComponent<Entity>().SetTeam(Team.RED);
+        Entity newShipEntity = newShip.GetComponent<Entity>();
+        newShipEntity.SetTeam(Team.RED);
+        newShipEntity.onDeath += DecreaseWaveEnemyCount;
+
         return;
-}
+    }   
+
+
+
+
+    public void DecreaseWaveEnemyCount () {
+        waves[nextWave].numOfEnemies -= 1;
+        if (waves[nextWave].numOfEnemies <= 0) {
+            WaveCompleted();
+        }
+    }
+
+
+
+
 }

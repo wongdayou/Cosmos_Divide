@@ -51,4 +51,8 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void EndLevel(){
+        Debug.Log("Level ended");
+    }
 }
