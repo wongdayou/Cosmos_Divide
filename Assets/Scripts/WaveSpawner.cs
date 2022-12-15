@@ -82,6 +82,9 @@ public class WaveSpawner : MonoBehaviour
         if (spawnPoints.Length <= 0){
             Debug.LogError("WaveSpawner: no spawn points!");
         }
+
+        waves[nextWave].GetNumOfEnemies();
+
     }
 
 
@@ -91,7 +94,7 @@ public class WaveSpawner : MonoBehaviour
     {
         switch (waveState) {
             case WaveState.SPAWNING: return;
-            case WaveState.WAITING: 
+            case WaveState.WAITING: return;
                 // if (searchCountdown <= 0f) {
                 //     if (GameObject.FindGameObjectWithTag("Enemy") == null){
                 //         WaveCompleted();
@@ -132,6 +135,7 @@ public class WaveSpawner : MonoBehaviour
             waveCountdown = countdownTime;
             nextWave ++;
             Debug.Log("Spawning Next Wave");
+            waves[nextWave].GetNumOfEnemies();
         }
 
         return;

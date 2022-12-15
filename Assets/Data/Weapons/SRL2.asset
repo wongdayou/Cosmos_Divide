@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8395377068891827205, guid: 49a0393049a3329429046bb33e942d0e, type: 3}
   fireRate: 0.5
-  firingRange: 5
-  detectRange: 7
+  firingRange: 10
+  detectRange: 15
   numOfBarrels: 2
   shootSound: MissileFire
   rotateSpeed: 0

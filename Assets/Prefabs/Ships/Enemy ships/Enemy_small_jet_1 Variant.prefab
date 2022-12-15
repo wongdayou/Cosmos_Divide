@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8000221159859563269, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221160391867116, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8000221160391867121, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -73,7 +81,23 @@ PrefabInstance:
       objectReference: {fileID: 3248345236282985650}
     - target: {fileID: 8000221160600865791, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
       propertyPath: m_Name
-      value: Enemy_small_jet_1
+      value: Enemy_small_jet_1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221160600865791, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221161009273173, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221161703387916, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221161888837369, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}

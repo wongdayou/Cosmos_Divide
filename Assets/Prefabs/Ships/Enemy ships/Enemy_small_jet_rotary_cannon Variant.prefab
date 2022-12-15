@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_small_jet_rotary_cannon Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2860756282465733937, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2860756282465733949, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,6 +67,14 @@ PrefabInstance:
       propertyPath: dropData
       value: 
       objectReference: {fileID: 3016344972466515150}
+    - target: {fileID: 2860756282780567879, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860756283347076677, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2860756283475912404, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -75,6 +87,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2860756283475912424, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699146532268123008, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6699146532713674054, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -86,6 +106,14 @@ PrefabInstance:
     - target: {fileID: 6699146532713674054, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699146532713674056, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699146533837909297, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
