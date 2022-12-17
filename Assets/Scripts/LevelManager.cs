@@ -14,13 +14,7 @@ public class LevelManager : MonoBehaviour
 
 
     private void Awake() {
-        if (instance == null){
-            instance = this;
-        }
-        else {
-            Destroy(gameObject);
-            return;
-        }
+        instance = this;
 
         // if (missionCompleteUI == null){
         //     Debug.LogError("No mission complete UI in LevelManager.cs");

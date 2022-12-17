@@ -56,6 +56,7 @@ public class GameMaster : MonoBehaviour
 
     void Update(){
         if (Input.GetKeyDown(shopButton)){
+            Debug.Log("Shop Button pressed");
             if (shop.activeSelf)
             {
                 ToggleShop();

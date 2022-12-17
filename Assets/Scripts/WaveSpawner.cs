@@ -128,7 +128,7 @@ public class WaveSpawner : MonoBehaviour
             levelManager.EndLevel();
 
             //Destroy WaveSpawner from GameMaster because we don't need it for the main menu
-            Destroy(this);
+            // Destroy(this);
 
         }
         else {
