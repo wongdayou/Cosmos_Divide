@@ -6,18 +6,32 @@ using HelperClasses;
 public class Player : Entity 
 {
     public HealthBar healthBar;
-
+    Rigidbody2D rb;
     public delegate void PlayerDeathManager();
     public event PlayerDeathManager whenPlayerDies;
 
     public int cashAmount = 0;
+    bool canMove = true;
+
+
+
     protected override void Start() {
         base.Start();
         this.gameObject.tag = "Player";
-        healthBar.SetMaxHealth(this.data.maxHealth);
-        if (this.currentHealth != this.data.maxHealth){
-            healthBar.SetHealth(this.currentHealth);
+
+
+        if (healthBar == null){
+            Debug.LogError("No healthbar detected on player");
         }
+        else{
+
+            healthBar.SetMaxHealth(this.data.maxHealth);
+            if (this.currentHealth != this.data.maxHealth){
+                healthBar.SetHealth(this.currentHealth);
+            }
+        }
+        
+
         GameMaster.gm.onShopToggle += OnShopToggle;
         string teamName;
         if (team == Team.BLUE){
@@ -36,13 +50,49 @@ public class Player : Entity
             }
         }
 
+
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null) {
+            Debug.LogError("Player does not have a rigidbody!");
+        }
+
     }
+
+
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (Input.GetKey("w"))
+        {
+            rb.AddForce(transform.up * data.speed);
+        }
+
+        if (Input.GetKey("a"))
+        {
+            this.transform.Rotate(Vector3.forward * data.rotationSpeed * Time.fixedDeltaTime);
+        }
+
+        if (Input.GetKey("s"))
+        {
+            rb.AddForce(-transform.up * data.speed);
+        }
+
+        if (Input.GetKey("d"))
+        {
+            this.transform.Rotate(Vector3.back * data.rotationSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+
 
     public override void Damage(int damage)
     {
         base.Damage(damage);
         healthBar.SetHealth(this.currentHealth);
     }
+
+
 
     public override void Heal(int healAmount)
     {
@@ -52,6 +102,8 @@ public class Player : Entity
         //Debug.Log("Healthbar set");
     }
 
+
+
     protected override void Die(){
         if (whenPlayerDies != null){
             whenPlayerDies();
@@ -59,11 +111,15 @@ public class Player : Entity
         base.Die();
     }
 
+
+
     public void IncreaseCash (int amount){
         cashAmount += amount;
         PlayerUIManager.instance.UpdateCash(cashAmount);
         return;
     }
+
+
 
     public void DecreaseCash(int amount){
         cashAmount = Mathf.Min(0, cashAmount - amount);
@@ -71,16 +127,21 @@ public class Player : Entity
         return;
     }
 
+
+
     void OnShopToggle(bool active) {
         // when shop toggles disable all controls and movement
-        PlayerMovement pm = GetComponent<PlayerMovement>();
+        canMove = !canMove;
         WeaponController wc = GetComponent<WeaponController>();
-        if (pm == null || wc == null) {
-            Debug.LogError("Player.cs.OnShopToggle(): PlayerMovement/WeaponController is null");
+        if (wc == null) {
+            Debug.LogError("Player.cs.OnShopToggle(): WeaponController is null");
             return;
         }
 
-        pm.enabled = !active;
         wc.enabled = !active;
     }
+
+
+
+
 }

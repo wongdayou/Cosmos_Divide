@@ -55,6 +55,9 @@ public class Entity : MonoBehaviour
             currentHealth = data.maxHealth;
             resaleValue = (int)(data.cost * 0.5f);
         }
+        else{
+            Debug.LogError("No Data detected on entity: " + this.gameObject.name);
+        }
         
         Transform minimapIcon = transform.Find("MinimapIcon");
         if (minimapIcon != null){

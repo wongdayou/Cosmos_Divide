@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using HelperClasses;
 
 public class GameMaster : MonoBehaviour
@@ -14,7 +15,9 @@ public class GameMaster : MonoBehaviour
     public int blueLoad = 0;
     public int redLoad = 0;
     public KeyCode shopButton = KeyCode.B;
+    public KeyCode pauseButton = KeyCode.Escape;
     private bool gameIsPaused = false;
+    private bool levelCompleted = false;
 
     [SerializeField]
     private GameObject shop;
@@ -29,11 +32,15 @@ public class GameMaster : MonoBehaviour
     public List<GameObject> redTeamShips = new List<GameObject>();
     public List<GameObject> blueTeamShips = new List<GameObject>();
 
+
+
     private void Awake() {
         if (gm == null){
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         }
     }
+
+
 
     private void Start() {
         if (shop.activeSelf){
@@ -44,6 +51,8 @@ public class GameMaster : MonoBehaviour
             ToggleGameUI(true);
         }
     }
+
+
 
     void Update(){
         if (Input.GetKeyDown(shopButton)){
@@ -60,7 +69,20 @@ public class GameMaster : MonoBehaviour
             }
             
         }
+
+        if (Input.GetKeyDown(pauseButton)){
+
+            if (levelCompleted){
+                SceneManager.LoadScene("MainMenu");
+            }
+
+            else{
+                Debug.Log("Pausing Game");
+            }
+        }
     }
+
+
 
     void PauseGame(){
         Time.timeScale = 0f;
@@ -68,17 +90,23 @@ public class GameMaster : MonoBehaviour
         Debug.Log("Paused");
     }
 
+
+
     void ResumeGame() {
         Time.timeScale = 1f;
         gameIsPaused = false;
         Debug.Log("Resumed");
     }
 
+
+
     void ToggleGameUI(bool active){
         if (gameUI != null){
             gameUI.SetActive(active);
         }
     }
+
+
 
     void ToggleShop() {
         if (shop != null) {
@@ -88,6 +116,8 @@ public class GameMaster : MonoBehaviour
             onShopToggle.Invoke(shop.activeSelf);
         } 
     }
+
+
 
     //version of function to restrict spawn based on load
     public bool CanSpawn(Team t, int load = 10) {
@@ -120,6 +150,8 @@ public class GameMaster : MonoBehaviour
         return false;
     }
 
+
+
     public void ReduceLoad(Team t, int load) {
         switch (t) {
             case Team.RED:
@@ -133,6 +165,8 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+
+
     public void RecordShip(Team t, GameObject ship){
         switch (t) {
             case Team.RED:
@@ -145,6 +179,8 @@ public class GameMaster : MonoBehaviour
         return;
     }
 
+
+
     public void PopShip(Team t, GameObject ship){
         switch (t) {
             case Team.RED:
@@ -156,4 +192,12 @@ public class GameMaster : MonoBehaviour
         }
         return;
     }
+
+
+
+    public void LevelComplete(){
+        levelCompleted = true;
+    }
+
+
 }

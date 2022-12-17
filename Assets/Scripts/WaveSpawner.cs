@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
     // WAITING: waiting for the player to kill off all enemies
     // COUNTDOWN: countdown to the start of the next wave
-    public enum WaveState { SPAWNING, WAITING, COUNTDOWN, END };
+    public enum WaveState { SPAWNING, WAITING, COUNTDOWN };
 
     static GameMaster gm;
     public float countdownTime = 5f;
@@ -116,9 +116,6 @@ public class WaveSpawner : MonoBehaviour
                 }
                 break;
 
-            case WaveState.END:
-                levelManager.EndLevel();
-                break;
         }
     }
 
@@ -128,7 +125,11 @@ public class WaveSpawner : MonoBehaviour
         
         if (nextWave + 1 > waves.Length - 1) {
             Debug.Log("All waves cleared");
-            waveState = WaveState.END;
+            levelManager.EndLevel();
+
+            //Destroy WaveSpawner from GameMaster because we don't need it for the main menu
+            Destroy(this);
+
         }
         else {
             waveState = WaveState.COUNTDOWN;

@@ -8,6 +8,11 @@ public class LevelManager : MonoBehaviour
     public Slider slider;
     public static LevelManager instance;
 
+    [SerializeField]
+    private GameObject missionCompleteUI;
+
+
+
     private void Awake() {
         if (instance == null){
             instance = this;
@@ -16,13 +21,24 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        // if (missionCompleteUI == null){
+        //     Debug.LogError("No mission complete UI in LevelManager.cs");
+        // }
+
         DontDestroyOnLoad(gameObject);    
+
+
     }
+
+
 
     public void LoadLevel(string name){
         //TODO get the slider
         StartCoroutine(LoadLevelAsync(name));
     }
+
+
 
     IEnumerator LoadLevelAsync (string name) {
         
@@ -52,7 +68,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+
+
     public void EndLevel(){
         Debug.Log("Level ended");
+        missionCompleteUI.SetActive(true);
+        GameMaster gameMaster = this.gameObject.GetComponent<GameMaster>();
+        if (gameMaster != null) {
+            gameMaster.LevelComplete();
+        }
+
     }
 }
