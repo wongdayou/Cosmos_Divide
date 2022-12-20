@@ -1,36 +1,48 @@
+/*
+
+    GameMaster serves to manage overall game matters.
+    The following are its functions:
+        1. Load levels and manage the loading bar
+        2. Handle user inputs regarding overall game functions e.g. pausing, settings
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using HelperClasses;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour
 {
-    public static GameMaster gm;
-    public int shipLimit = 50;
-    public int numShips = 0; 
-    public int loadLimit = 50;
-    // private bool spawning = false;
-    // private bool mutex = false;
-    public int blueLoad = 0;
-    public int redLoad = 0;
-    public KeyCode shopButton = KeyCode.B;
+    public static GameMaster gm; 
+    
+    
     public KeyCode pauseButton = KeyCode.Escape;
     private bool gameIsPaused = false;
     private bool levelCompleted = false;
 
-    [SerializeField]
-    private GameObject shop;
+    
 
     [SerializeField]
     private GameObject gameUI;
 
-    public delegate void ShopToggle(bool active);
-    public ShopToggle onShopToggle;
+    
 
-    // list of ships on each team
-    public List<GameObject> redTeamShips = new List<GameObject>();
-    public List<GameObject> blueTeamShips = new List<GameObject>();
+    // to manage the loading screen loading progress bar
+    public Slider slider;
 
 
 
@@ -43,9 +55,7 @@ public class GameMaster : MonoBehaviour
 
 
     private void Start() {
-        if (shop.activeSelf){
-            ToggleShop();
-        }
+        
         if (!gameIsPaused && !gameUI.activeSelf)
         {
             ToggleGameUI(true);
@@ -55,26 +65,12 @@ public class GameMaster : MonoBehaviour
 
 
     void Update(){
-        if (Input.GetKeyDown(shopButton)){
-            Debug.Log("Shop Button pressed");
-            if (shop.activeSelf)
-            {
-                ToggleShop();
-                ResumeGame();
-                ToggleGameUI(!shop.activeSelf);
-            }
-            else{   
-                ToggleShop();
-                PauseGame();
-                ToggleGameUI(!shop.activeSelf);
-            }
-            
-        }
+        
 
         if (Input.GetKeyDown(pauseButton)){
 
             if (levelCompleted){
-                SceneManager.LoadScene("MainMenu");
+                LoadLevel("MainMenu");
             }
 
             else{
@@ -109,96 +105,48 @@ public class GameMaster : MonoBehaviour
 
 
 
-    void ToggleShop() {
-        if (shop != null) {
-            shop.SetActive( !shop.activeSelf );
-        }
-        if (onShopToggle != null){
-            onShopToggle.Invoke(shop.activeSelf);
-        } 
-    }
-
-
-
-    //version of function to restrict spawn based on load
-    public bool CanSpawn(Team t, int load = 10) {
-        switch (t) {
-            case Team.RED: 
-                if (redLoad + load > loadLimit) {
-                    // Debug.Log("Too much load");
-                    return false;
-                }
-                else {
-                    redLoad += load;
-                    // Debug.Log("Load acceptable");
-                    // Debug.Log(redLoad);
-                    return true;
-                }
-                
-            case Team.BLUE:
-                if (blueLoad + load > loadLimit) {
-                    // Debug.Log("Too much load");
-                    return false;
-                }
-                else{
-                    blueLoad += load;
-                    // Debug.Log("Blue Load acceptable");
-                    // Debug.Log(blueLoad);
-                    return true;
-                }
-                
-        }
-        return false;
-    }
-
-
-
-    public void ReduceLoad(Team t, int load) {
-        switch (t) {
-            case Team.RED:
-                redLoad -= load;
-                break;
-            case Team.BLUE:
-                blueLoad -= load;
-                break;
-            default: 
-                return;
-        }
-    }
-
-
-
-    public void RecordShip(Team t, GameObject ship){
-        switch (t) {
-            case Team.RED:
-                redTeamShips.Add(ship);
-                break;
-            case Team.BLUE:
-                blueTeamShips.Add(ship);
-                break;
-        }
-        return;
-    }
-
-
-
-    public void PopShip(Team t, GameObject ship){
-        switch (t) {
-            case Team.RED:
-                redTeamShips.Remove(ship);
-                break;
-            case Team.BLUE:
-                blueTeamShips.Remove(ship);
-                break;
-        }
-        return;
-    }
-
-
 
     public void LevelComplete(){
         levelCompleted = true;
     }
+
+
+
+    public void LoadLevel(string name){
+        //TODO get the slider
+        StartCoroutine(LoadLevelAsync(name));
+    }
+
+
+
+    IEnumerator LoadLevelAsync (string name) {
+        
+        AsyncOperation loading = SceneManager.LoadSceneAsync("Loading");
+
+        while (!loading.isDone){
+            yield return null;
+        }
+
+        GameObject sliderGameObject = GameObject.FindWithTag("LoadingBar");
+        if (sliderGameObject == null){
+            Debug.LogError("LevelManager: LoadLevel() sliderGameObject not found");
+            yield return false;
+        }
+        slider = sliderGameObject.GetComponent<Slider>();
+        if (slider == null){
+            Debug.LogError("LevelManager: LoadLevel() slider not found");
+            yield return false;
+        }
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(name);
+        
+        while (!op.isDone){
+            float progress = Mathf.Clamp01(op.progress / 0.9f);
+            slider.value = progress;
+            yield return null;
+        }
+    }
+
 
 
 }
