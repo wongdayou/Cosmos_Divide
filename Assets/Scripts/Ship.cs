@@ -30,7 +30,7 @@ public class Ship : Entity
             dying = true;
             Instantiate(data.deathExplosion, transform.position, transform.rotation);
             AudioManager.instance.Play(data.deathExplosionSound);
-            GameMaster.gm.ReduceLoad(team, data.load);
+            LevelManager.instance.ReduceLoad(team, data.load);
 
             RaiseOnDeathEvent();
             if (pUIm != null){

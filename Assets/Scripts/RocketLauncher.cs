@@ -36,7 +36,7 @@ public class RocketLauncher : FixedCannon
             else{
                 _hm.SetBulletLayer(identifier + " Bullet");
                 enemyInFront = Physics2D.Raycast(firePoint.position, firePoint.up, data.detectRange, LayerMask.GetMask(enemyTeam));
-                if (enemyInFront != null){
+                if (enemyInFront.collider != null){
                     _hm.SetTarget(enemyInFront.transform);
                 }
                 else {

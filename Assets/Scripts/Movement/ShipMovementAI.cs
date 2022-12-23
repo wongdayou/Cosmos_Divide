@@ -102,10 +102,10 @@ public class ShipMovementAI : MonoBehaviour
         GameObject result = null;
         switch (team) {
             case Team.BLUE:
-                result = GetNearestTarget(GameMaster.gm.redTeamShips);
+                result = GetNearestTarget(LevelManager.instance.redTeamShips);
                 break;
             case Team.RED:
-                result = GetNearestTarget(GameMaster.gm.blueTeamShips);
+                result = GetNearestTarget(LevelManager.instance.blueTeamShips);
                 break;
             default:
                 result = null;

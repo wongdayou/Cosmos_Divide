@@ -16,8 +16,6 @@
 
 
 
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,13 +40,14 @@ public class GameMaster : MonoBehaviour
     
 
     // to manage the loading screen loading progress bar
-    public Slider slider;
+    Slider slider;
 
 
 
     private void Awake() {
         if (gm == null){
-            gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+            gm = this.GetComponent<GameMaster>();
+            DontDestroyOnLoad(this);
         }
     }
 
@@ -56,9 +55,9 @@ public class GameMaster : MonoBehaviour
 
     private void Start() {
         
-        if (!gameIsPaused && !gameUI.activeSelf)
+        if (gameUI != null)
         {
-            ToggleGameUI(true);
+            gameUI.SetActive(gameIsPaused);
         }
     }
 
@@ -81,26 +80,24 @@ public class GameMaster : MonoBehaviour
 
 
 
-    void PauseGame(){
+    public void PauseGame(){
         Time.timeScale = 0f;
         gameIsPaused = true;
+        if (gameUI != null){
+            gameUI.SetActive(false);
+        }
         Debug.Log("Paused");
     }
 
 
 
-    void ResumeGame() {
+    public void ResumeGame() {
         Time.timeScale = 1f;
         gameIsPaused = false;
-        Debug.Log("Resumed");
-    }
-
-
-
-    void ToggleGameUI(bool active){
         if (gameUI != null){
-            gameUI.SetActive(active);
+            gameUI.SetActive(true);
         }
+        Debug.Log("Resumed");
     }
 
 

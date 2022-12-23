@@ -12,20 +12,6 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     public List<WeaponControl> weapons = new List<WeaponControl>();
     bool isShooting = false;
-    void Start()
-    {
-        string weaponLayer = null;
-        string identifier = null;
-        if (this.gameObject.layer == LayerMask.NameToLayer("Blue Team")) {
-            weaponLayer = "Blue Team Weapon";
-            identifier = "Blue Team Bullet";
-        }
-        else if (this.gameObject.layer == LayerMask.NameToLayer("Red Team")){
-            weaponLayer = "Red Team Weapon";
-            identifier = "Red Team Bullet";
-        }
-        
-    }
 
     void Update()
     {

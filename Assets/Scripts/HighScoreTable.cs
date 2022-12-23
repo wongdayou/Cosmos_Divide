@@ -20,7 +20,7 @@ public class HighScoreTable : MonoBehaviour
     }
 
     public void RestartSurvival(){
-        LevelManager.instance.LoadLevel("Survival");
+        GameMaster.gm.LoadLevel("Survival");
     }
 
     public void ReturnToMainMenu(){

@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public void StartGameMode(string name){
-        LevelManager.instance.LoadLevel(name);
+    public void LoadLevel(string name){
+        GameMaster.gm.LoadLevel(name);
     }
+
+
+    public void LoadMenu(string name){
+        SceneManager.LoadSceneAsync(name);
+    }
+
     public void QuitGame(){
         Debug.Log("Quitting game");
         Application.Quit();

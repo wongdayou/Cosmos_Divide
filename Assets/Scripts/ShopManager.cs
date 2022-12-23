@@ -4,32 +4,30 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
+    public static ShopManager instance;
     public KeyCode shopButton = KeyCode.B;
     [SerializeField]
     private GameObject shop;
 
-    public GameMaster gm;
-
-
     public delegate void ShopToggle(bool active);
     public ShopToggle onShopToggle;
+
+    void Awake(){
+        instance = this;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if (gm == null){
-            Debug.LogError("ShopManager: no gm present");
-        }
-
-        if (shop == null){
-            Debug.LogError("ShopManager: no shop present");
-        }
 
 
         // if we accidentally left the shop open when the level starts, turn it off
         if (shop.activeSelf){
             ToggleShop();
         }
+
+        
     }
 
 
@@ -42,13 +40,11 @@ public class ShopManager : MonoBehaviour
             if (shop.activeSelf)
             {
                 ToggleShop();
-                gm.ResumeGame();
-                gm.ToggleGameUI(!shop.activeSelf);
+                GameMaster.gm.ResumeGame();
             }
             else{   
                 ToggleShop();
-                gm.PauseGame();
-                gm.ToggleGameUI(!shop.activeSelf);
+                GameMaster.gm.PauseGame();
             }
             
         }

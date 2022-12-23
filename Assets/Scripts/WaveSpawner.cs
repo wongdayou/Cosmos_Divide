@@ -186,7 +186,7 @@ public class WaveSpawner : MonoBehaviour
                     
                 // }
 
-                if (gm.CanSpawn(Team.RED, _waveEnemy.enemy.GetComponent<Entity>().data.load)){
+                if (LevelManager.instance.CanSpawn(Team.RED, _waveEnemy.enemy.GetComponent<Entity>().data.load)){
                     //Debug.Log("Spawning");
                     CreateGameObject(_waveEnemy.enemy);
                     
@@ -198,7 +198,7 @@ public class WaveSpawner : MonoBehaviour
         int i = 0;
         while (i < _waveEnemy.count){
 
-            if (gm.CanSpawn(Team.RED, _waveEnemy.enemy.GetComponent<Entity>().data.load)){
+            if (LevelManager.instance.CanSpawn(Team.RED, _waveEnemy.enemy.GetComponent<Entity>().data.load)){
                 CreateGameObject(_waveEnemy.enemy);
                 i++;
             }

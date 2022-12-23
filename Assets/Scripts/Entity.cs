@@ -85,8 +85,9 @@ public class Entity : MonoBehaviour
         }
         // this.gameObject.tag = teamName;
 
-        GameMaster.gm.RecordShip(team, this.gameObject);
+        LevelManager.instance.RecordShip(team, this.gameObject);
     }
+
 
     public virtual void Damage(int damage)
     {
@@ -111,8 +112,8 @@ public class Entity : MonoBehaviour
             dying = true;
             Instantiate(data.deathExplosion, transform.position, transform.rotation);
             AudioManager.instance.Play(data.deathExplosionSound);
-            GameMaster.gm.ReduceLoad(team, data.load);
-            GameMaster.gm.PopShip(team, this.gameObject);
+            LevelManager.instance.ReduceLoad(team, data.load);
+            LevelManager.instance.PopShip(team, this.gameObject);
 
             if (onDeath != null){
                 //TODO make it so that the enemy the enemy only looks for a player object after the current player object has been destroyed,

@@ -81,7 +81,7 @@ public class CarrierSpawner : MonoBehaviour
         int spIndex = Random.Range(0, numOfSpawnPoints);
 
         //if the spawnpoint is spawning something now or it is not ready yet
-        if (spawnPoints[spIndex].isSpawning || (Time.time <= spawnPoints[spIndex].timeToReady) || !gm.CanSpawn(team, _si.spawnPrefab.GetComponent<Entity>().data.load)){
+        if (spawnPoints[spIndex].isSpawning || (Time.time <= spawnPoints[spIndex].timeToReady) || !LevelManager.instance.CanSpawn(team, _si.spawnPrefab.GetComponent<Entity>().data.load)){
             return;
         }    
         else {

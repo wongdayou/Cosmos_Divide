@@ -32,7 +32,7 @@ public class Player : Entity
         }
         
 
-        GameMaster.gm.onShopToggle += OnShopToggle;
+        ShopManager.instance.onShopToggle += OnShopToggle;
         string teamName;
         if (team == Team.BLUE){
             teamName = "Blue";
