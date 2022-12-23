@@ -9,7 +9,6 @@ public class WaveSpawner : MonoBehaviour
     // COUNTDOWN: countdown to the start of the next wave
     public enum WaveState { SPAWNING, WAITING, COUNTDOWN };
 
-    static GameMaster gm;
     public float countdownTime = 5f;
     public float searchRate = 2f;
     private float waveCountdown;
@@ -60,12 +59,6 @@ public class WaveSpawner : MonoBehaviour
 
 
     private void Awake() {
-        if (gm == null){
-            gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-            if (gm == null){
-                Debug.LogError("WaveSpawner: GameMaster not found (Awake())");
-            }
-        }
 
         levelManager = this.gameObject.GetComponent<LevelManager>();
         if (levelManager == null){

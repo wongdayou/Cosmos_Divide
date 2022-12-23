@@ -70,6 +70,7 @@ public static class DataManager
 
     public static GameData LoadFile()
     {
+        Debug.Log("Destination: " + destination);
         GameData data;
         FileStream file;
         BinaryFormatter bf = new BinaryFormatter();
@@ -87,14 +88,15 @@ public static class DataManager
         }
         catch (Exception e){
             Debug.Log(e);
+            Debug.Log("Error encountered here");
             file.Close();
             DeleteSavedData();
             CreateDefaultFile();
             file = File.OpenRead(destination);
+            data = (GameData) bf.Deserialize(file);
         }
 
-
-        data = (GameData) bf.Deserialize(file);
+        
         file.Close();
 
         return data;

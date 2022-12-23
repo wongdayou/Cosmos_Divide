@@ -59,10 +59,9 @@ public class LevelManager : MonoBehaviour
     public void EndLevel(){
         Debug.Log("Level ended");
         missionCompleteUI.SetActive(true);
-        GameMaster gameMaster = this.gameObject.GetComponent<GameMaster>();
-        if (gameMaster != null) {
-            gameMaster.LevelComplete();
-        }
+        
+        GameMaster.gm.LevelComplete();
+        
 
     }
 

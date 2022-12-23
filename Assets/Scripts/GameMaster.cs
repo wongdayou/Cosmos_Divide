@@ -57,7 +57,7 @@ public class GameMaster : MonoBehaviour
         
         if (gameUI != null)
         {
-            gameUI.SetActive(gameIsPaused);
+            gameUI.SetActive(!gameIsPaused);
         }
     }
 
