@@ -62,4 +62,6 @@ public class PlayerUIManager : MonoBehaviour
         highScoreTable.GetComponent<HighScoreTable>().SetScoreText(score);
         gameElements.SetActive(false);
     }
+
+    
 }
