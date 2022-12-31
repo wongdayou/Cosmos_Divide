@@ -1,3 +1,11 @@
+/*
+    Weapon Manager helps to find out the team of the entity that the weapons are attached to and sets the team of the weapons accordingly.
+    This is to ensure the weapons target the right opponents
+
+
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

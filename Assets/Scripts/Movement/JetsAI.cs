@@ -5,10 +5,10 @@ using UnityEngine;
 public class JetsAI : ShipMovementAI
 {
     //for jets they only have fixed cannons
-    public FixedCannon fc;
+    public FixedCannonAI fc;
 
     protected override void Start(){
-        fc = GetComponentInChildren<FixedCannon>();
+        fc = GetComponentInChildren<FixedCannonAI>();
         if (fc == null){
             Debug.LogError(this.gameObject.name + " has no fixedcannon attached");
         }

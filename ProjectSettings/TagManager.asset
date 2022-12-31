@@ -13,6 +13,10 @@ TagManager:
   - FirePoint
   - Blue
   - Red
+  - MinimapIcon
+  - Blue Team
+  - Blue Team Weapon
+  - Red Team
   layers:
   - Default
   - TransparentFX
@@ -59,7 +63,7 @@ TagManager:
   - name: MinimapIcons
     uniqueID: 2974814069
     locked: 0
-  - name: Ships
+  - name: Entities
     uniqueID: 1015229633
     locked: 0
   - name: effects

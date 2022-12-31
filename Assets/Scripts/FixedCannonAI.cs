@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FixedCannon : weapon
+public class FixedCannonAI : weapon
 {
     protected RaycastHit2D hit;
     protected override void Update(){

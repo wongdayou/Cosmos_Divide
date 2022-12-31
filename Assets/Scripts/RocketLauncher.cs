@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 //the difference between rocket launcher and missile system is that rocket launcher needs to face the enemy before shooting
-public class RocketLauncher : FixedCannon
+public class RocketLauncher : FixedCannonAI
 {
     RaycastHit2D enemyInFront;
     protected override void Update(){

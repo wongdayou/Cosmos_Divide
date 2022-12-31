@@ -21,11 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2860756282465733949, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.516662
+      value: -49.90255
       objectReference: {fileID: 0}
     - target: {fileID: 2860756282465733949, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6456976
+      value: 61.984642
       objectReference: {fileID: 0}
     - target: {fileID: 2860756282465733949, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_LocalPosition.z
@@ -73,7 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2860756283347076677, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2860756283347076677, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
+      propertyPath: m_TagString
+      value: MinimapIcon
       objectReference: {fileID: 0}
     - target: {fileID: 2860756283475912404, guid: e91dea8c1002e484aaf12e679b05e948, type: 3}
       propertyPath: m_Color.b
