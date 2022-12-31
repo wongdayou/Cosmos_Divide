@@ -11,7 +11,6 @@ public class Player : Entity
     public event PlayerDeathManager whenPlayerDies;
 
     public int cashAmount = 0;
-    bool canMove = true;
 
 
 
@@ -32,7 +31,6 @@ public class Player : Entity
         }
         
 
-        ShopManager.instance.onShopToggle += OnShopToggle;
         string teamName;
         if (team == Team.BLUE){
             teamName = "Blue";
@@ -127,19 +125,6 @@ public class Player : Entity
         return;
     }
 
-
-
-    void OnShopToggle(bool active) {
-        // when shop toggles disable all controls and movement
-        canMove = !canMove;
-        WeaponController wc = GetComponent<WeaponController>();
-        if (wc == null) {
-            Debug.LogError("Player.cs.OnShopToggle(): WeaponController is null");
-            return;
-        }
-
-        wc.enabled = !active;
-    }
 
 
 

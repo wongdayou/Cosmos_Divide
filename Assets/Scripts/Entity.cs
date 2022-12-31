@@ -10,40 +10,10 @@ public class Entity : MonoBehaviour
     public bool invincible = false;
     public Team team = Team.BLUE;
 
-    #region legacy code. Remove if sure they have no use
-    // [SerializeField]
-    // private int _cost = 0;
-    // public int Cost {
-    //     get => _cost;
-    //     set => _cost = value;
-    // }
-    // private int _resaleValue = -1;
-    // public int ResaleValue {
-    //     get => _resaleValue;
-    //     set => _resaleValue = value;
-    // }
-
-    // [SerializeField]
-    // private string _description = "no description available";
-    // public string Description {
-    //     get => _description;
-    // }
-
-    // private ItemType _type = ItemType.SHIPS;
-    // public ItemType Type {
-    //     get => _type;
-    //     set => _type = value;
-    // }
-
-    // public float speed = 0f;
-    
-    #endregion
-
     [SerializeField]
     protected int currentHealth;
     public int resaleValue = 0;
-    // public int numOfTurrets = 0;
-    // public int numOfDeploymentPods = 0;
+
 
     public delegate void DeathHandler();
     public event DeathHandler onDeath;

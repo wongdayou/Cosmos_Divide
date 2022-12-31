@@ -6,21 +6,13 @@ using HelperClasses;
 
 public class Ship : Entity
 {
-    protected PlayerUIManager pUIm;
     public int defeatScore = 0;
     public DropData dropData;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        // gm = FindObjectOfType<GameMaster>();
-        // if (gm == null){
-        //     Debug.Log("Entity: GameMaster not found!");
-        // }
-        pUIm = FindObjectOfType<PlayerUIManager>();
-        if (pUIm == null){
-            Debug.Log("SurvivalEnemy: playerUIManager is null!");
-        }
+
         
     }
 
@@ -33,19 +25,7 @@ public class Ship : Entity
             LevelManager.instance.ReduceLoad(team, data.load);
 
             RaiseOnDeathEvent();
-            if (pUIm != null){
-                pUIm.IncreaseScore(defeatScore);
-            }
-            // if (dropsEnabled){
-            //     DropData dropData = GetComponent<DropData>();
-            //     if (dropData == null){
-            //         Debug.Log("Enemy.cs: Tried to access DropData but cannot be found");
-            //     }
-            //     else{
-            //         dropData.Drop(this.transform.position);
-            //     }
-                
-            // }
+
 
             if (dropData == null){
                 Debug.Log("No dropdata. Continuing...");

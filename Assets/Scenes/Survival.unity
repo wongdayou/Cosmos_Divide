@@ -263,6 +263,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5057847474134265227, guid: bc78ad3666a416c41940e3cc037c1837, type: 3}
+      propertyPath: waves.Array.data[0].waveEnemies.Array.data[0].count
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5057847474134265231, guid: bc78ad3666a416c41940e3cc037c1837, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2230,6 +2234,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 101039402}
+    - target: {fileID: 9161192490455369159, guid: dcdc219c1c4d38245a5e013140c16562, type: 3}
+      propertyPath: invincible
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcdc219c1c4d38245a5e013140c16562, type: 3}
 --- !u!1 &369751547
