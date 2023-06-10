@@ -9,7 +9,6 @@ public class WaveSpawner : MonoBehaviour
     // COUNTDOWN: countdown to the start of the next wave
     public enum WaveState { SPAWNING, WAITING, COUNTDOWN };
 
-    public float countdownTime = 5f;
     public float searchRate = 2f;
     private float waveCountdown;
     private float searchCountdown;
@@ -21,7 +20,8 @@ public class WaveSpawner : MonoBehaviour
 
     [System.Serializable]
     public class Wave{
-        public string name;
+        public string waveName;
+        public float countdownTime = 0f;
         public WaveEnemyInfo[] waveEnemies;
         public GameObject boss;
         public float bossSpawnTime = 60f;
@@ -42,8 +42,13 @@ public class WaveSpawner : MonoBehaviour
     [System.Serializable]
     public class WaveEnemyInfo {
         public GameObject enemy;
-        public int count;
+        public int count = 0;
+        public bool infiniteSpawning = false;
         public float cooldown;
+        public float timeToStart = 0f;
+        
+
+
     }
 
 
@@ -71,7 +76,7 @@ public class WaveSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waveCountdown = countdownTime;
+        waveCountdown = waves[0].countdownTime;
         if (spawnPoints.Length <= 0){
             Debug.LogError("WaveSpawner: no spawn points!");
         }
@@ -126,7 +131,7 @@ public class WaveSpawner : MonoBehaviour
         }
         else {
             waveState = WaveState.COUNTDOWN;
-            waveCountdown = countdownTime;
+            waveCountdown = waves[nextWave].countdownTime;
             nextWave ++;
             Debug.Log("Spawning Next Wave");
             waves[nextWave].GetNumOfEnemies();
@@ -169,8 +174,15 @@ public class WaveSpawner : MonoBehaviour
 
 
     IEnumerator SpawnEnemy(WaveEnemyInfo _waveEnemy){
+
+        // if we specified a time to wait before spawning the enemy, wait for the time specified before spawning.
+        if (_waveEnemy.timeToStart > 0f){
+            yield return new WaitForSeconds( _waveEnemy.timeToStart );
+        }
+
+
         //if -1 then spawn infinitely until player dies
-        if (_waveEnemy.count == -1){
+        if ( _waveEnemy.infiniteSpawning ){
             while (true) {
                 // if (gm.CanSpawn()){
                 //     gm.PlusShip();

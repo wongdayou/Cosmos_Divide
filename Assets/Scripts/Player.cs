@@ -9,6 +9,7 @@ public class Player : Entity
     Rigidbody2D rb;
     public delegate void PlayerDeathManager();
     public event PlayerDeathManager whenPlayerDies;
+    public bool playerDeathFlag = false;
 
     public int cashAmount = 0;
 
@@ -80,6 +81,17 @@ public class Player : Entity
         {
             this.transform.Rotate(Vector3.back * data.rotationSpeed * Time.fixedDeltaTime);
         }
+
+        
+
+
+    }
+
+    void Update(){
+        if (Input.GetKeyDown("p"))
+        {
+            this.Die();
+        }
     }
 
 
@@ -103,10 +115,16 @@ public class Player : Entity
 
 
     protected override void Die(){
-        if (whenPlayerDies != null){
-            whenPlayerDies();
+        if (!playerDeathFlag){
+            playerDeathFlag = true;
+            if (whenPlayerDies != null){
+                    whenPlayerDies();
+                
+                
+            }
+            base.Die();
         }
-        base.Die();
+        
     }
 
 

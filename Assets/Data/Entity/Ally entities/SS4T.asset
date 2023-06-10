@@ -17,7 +17,7 @@ MonoBehaviour:
   cost: 300
   description: 'A small ship that can hold up to 4 rotary cannon. Has greater durability
     but slower speed than most other smaller ships. '
-  speed: 1
+  speed: 3
   rotationSpeed: 50
   type: 1
   numOfTurrets: 4

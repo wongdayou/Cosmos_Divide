@@ -11,6 +11,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8000221159859563275, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221159859563275, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.039973527
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221159859563275, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8000221160391867116, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -26,6 +38,10 @@ PrefabInstance:
     - target: {fileID: 8000221160391867121, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8000221160600865730, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8000221160600865731, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
       propertyPath: m_RootOrder
@@ -99,7 +115,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8000221160600865730, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 30bc76a1525533c4f97955151d85f16a, type: 3}
 --- !u!1 &4865956105803055938 stripped
 GameObject:
@@ -126,3 +143,21 @@ MonoBehaviour:
     itemPrefab: {fileID: 8905817569201706849, guid: 72bd068c9ae70dc4bb16cbeec4e58449, type: 3}
     dropRate: 50
   dropChance: 0.5
+--- !u!114 &4504211142668552399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865956105803055938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48aac5d86967c5842b5ac3aaf2e992a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 8408a36fe9d998744b4162f46018a94c, type: 2}
+  target: {fileID: 0}
+  defensePlan: {fileID: 0}
+  patrolPosition: {x: 0, y: 0, z: 0}
+  roamPosition: {x: 0, y: 0, z: 0}
+  state: 0

@@ -30,6 +30,7 @@ public class PlayerUIManager : MonoBehaviour
         cashText.text = "Cash: $" + amt;
     }
 
+
     
     
 }

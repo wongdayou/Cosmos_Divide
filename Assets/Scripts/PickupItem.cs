@@ -35,13 +35,11 @@ public class PickupItem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")){
-            Debug.Log("its the player!");
             StartCoroutine(Pickup(other));
         }
     }
 
     IEnumerator Pickup(Collider2D player){
-        Debug.Log("picking up");
         Player p = player.GetComponentInParent<Player>();
         switch (pickupType) {
             case ListOfPickups.CASH:

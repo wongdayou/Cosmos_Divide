@@ -139,4 +139,4 @@ MonoBehaviour:
   bulletSpeed: 20
   lifeSpan: 1.5
   impactEffect: {fileID: 2561301681072824532, guid: fe363c8d667594045a099333514ce6b2, type: 3}
-  damage: 100
+  damage: 50

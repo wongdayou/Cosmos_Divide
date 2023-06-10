@@ -138,8 +138,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1560179249522662390}
   - component: {fileID: 1560179249522662391}
-  - component: {fileID: 1560179249522662384}
   - component: {fileID: 1560179249522662389}
+  - component: {fileID: 1987399585635336076}
   m_Layer: 0
   m_Name: SRD3
   m_TagString: Untagged
@@ -185,25 +185,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1560179249522662384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560179249522662385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60c1fd42bf6c5d43bda6c24f8230a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: e310dd0b2e33414418bd8892c1812e29, type: 2}
-  target: {fileID: 0}
-  defensePlan: {fileID: 0}
-  patrolPosition: {x: 0, y: 0, z: 0}
-  roamPosition: {x: 0, y: 0, z: 0}
-  state: 4
-  fc: {fileID: 0}
 --- !u!114 &1560179249522662389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +204,24 @@ MonoBehaviour:
   resaleValue: 0
   defeatScore: 0
   dropData: {fileID: 0}
+--- !u!114 &1987399585635336076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560179249522662385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48aac5d86967c5842b5ac3aaf2e992a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: e310dd0b2e33414418bd8892c1812e29, type: 2}
+  target: {fileID: 0}
+  defensePlan: {fileID: 0}
+  patrolPosition: {x: 0, y: 0, z: 0}
+  roamPosition: {x: 0, y: 0, z: 0}
+  state: 0
 --- !u!1 &1560179249597735479
 GameObject:
   m_ObjectHideFlags: 0

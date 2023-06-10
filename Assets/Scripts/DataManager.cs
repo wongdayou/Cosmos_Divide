@@ -35,6 +35,10 @@ public class GameData
         
     }
 
+    public void AddSurvivalScore(int score){
+        survivalScore.Add(score);
+    }
+
 
 
 }
@@ -105,6 +109,7 @@ public static class DataManager
 
 
     public static void DeleteSavedData(){
+        Debug.Log("Deleting Saved Data");
         File.Delete(destination);
         return;
     }

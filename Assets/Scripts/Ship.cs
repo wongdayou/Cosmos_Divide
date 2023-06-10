@@ -12,7 +12,9 @@ public class Ship : Entity
     protected override void Start()
     {
         base.Start();
-
+        if (data != null){
+            defeatScore = data.defeatScore;
+        }
         
     }
 
@@ -33,6 +35,11 @@ public class Ship : Entity
             else{
                 dropData.Drop(this.transform.position);
             }
+
+            if (Survival.instance != null){
+                Survival.instance.IncreaseScore(this.defeatScore);
+            }
+
             Destroy(gameObject);
         }
         

@@ -24,6 +24,8 @@ public class Survival : MonoBehaviour
 
     public static Survival instance;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,10 +55,34 @@ public class Survival : MonoBehaviour
             Debug.LogError("Survival.cs: player is null");
         }
         else{
-            p.GetComponentInParent<Player>().whenPlayerDies += ShowHighScore;
+            p.GetComponentInParent<Player>().whenPlayerDies += EndGame;
         }
 
+        GameData test = DataManager.LoadFile();
+        Debug.Log("Loaded survival high score list: ");
+        string testprint = "";
+        for (int i = 0; i < test.survivalScore.Count; i ++){
+            testprint += test.survivalScore[i].ToString();
+            testprint += " ";
+        }
+        Debug.Log(testprint);
 
+    }
+
+    void Update(){
+        if (Input.GetKeyDown("l")){
+            DataManager.DeleteSavedData();
+        }
+
+        if (Input.GetKeyDown("[")){
+            Debug.Log("Increasing Score by 50");
+            IncreaseScore(50);
+        }
+
+        if (Input.GetKeyDown("]")){
+            Debug.Log("Decreasing Score by 50");
+            DecreaseScore(50);
+        }
     }
 
 
@@ -67,14 +93,28 @@ public class Survival : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
     }
 
+    public void DecreaseScore(int amt){
+        score -= amt;
+        scoreText.text = "Score: " + score.ToString();
+    }
 
-    public void ShowHighScore(){
+
+    public void EndGame(){
+        // record high score and safe to file
+        Debug.Log("Inside Survival.cs: Ending game");
+        GameData savedData = DataManager.LoadFile();
+        savedData.AddSurvivalScore(score);
+        DataManager.SaveFile(savedData);
+        // load all the high scores
+        // show high scores    
         if (highScoreTable == null){
             Debug.LogError("Survival.cs: HighScoreTable is null!");
             return;
         }
         highScoreTable.SetActive(true);
-        highScoreTable.GetComponent<HighScoreTable>().SetScoreText(score);
+        HighScoreTable temp = highScoreTable.GetComponent<HighScoreTable>();
+        temp.SetScoreText(score);
+        temp.SetHighScores(savedData.survivalScore);
         gameElements.SetActive(false);
     }
 

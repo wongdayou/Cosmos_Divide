@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 8000221160600865731}
   - component: {fileID: 8000221160600865788}
   - component: {fileID: 8000221160600865790}
-  - component: {fileID: 8000221160600865730}
+  - component: {fileID: 5709513582483198245}
   m_Layer: 0
   m_Name: SJM-3
   m_TagString: Untagged
@@ -262,7 +262,7 @@ MonoBehaviour:
   resaleValue: 0
   defeatScore: 0
   dropData: {fileID: 0}
---- !u!114 &8000221160600865730
+--- !u!114 &5709513582483198245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,14 +271,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8000221160600865791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60c1fd42bf6c5d43bda6c24f8230a23, type: 3}
+  m_Script: {fileID: 11500000, guid: 48aac5d86967c5842b5ac3aaf2e992a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8408a36fe9d998744b4162f46018a94c, type: 2}
   target: {fileID: 0}
+  defensePlan: {fileID: 0}
+  patrolPosition: {x: 0, y: 0, z: 0}
   roamPosition: {x: 0, y: 0, z: 0}
   state: 0
-  fc: {fileID: 0}
 --- !u!1 &8000221161009273173
 GameObject:
   m_ObjectHideFlags: 0

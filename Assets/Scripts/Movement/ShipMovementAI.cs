@@ -85,6 +85,8 @@ public class ShipMovementAI : MonoBehaviour
                 }
                 break;
 
+
+            // when there is a target to defend and there are no enemies around
             case (State.patrolling) :
                 rb.AddForce(transform.up * data.speed);
                 direction = (patrolPosition - this.transform.position).normalized;
@@ -94,6 +96,12 @@ public class ShipMovementAI : MonoBehaviour
                     patrolPosition = defensePlan.GetNewPos();
                 }
                 break;
+
+
+            //  when there is a target to defend and there are enemies nearby
+            case (State.defending) :
+                break;
+            
         }
     }
 

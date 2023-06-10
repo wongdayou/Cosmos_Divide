@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: state
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1560179249522662384, guid: ec76b8270d7480d459b2b3543f4e6379, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1560179249522662385, guid: ec76b8270d7480d459b2b3543f4e6379, type: 3}
       propertyPath: m_Name
       value: Enemy_ship_small_jet_rocket Variant
@@ -195,7 +199,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1560179249522662384, guid: ec76b8270d7480d459b2b3543f4e6379, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec76b8270d7480d459b2b3543f4e6379, type: 3}
 --- !u!4 &3071547721201204409 stripped
 Transform:
@@ -227,3 +232,21 @@ MonoBehaviour:
     itemPrefab: {fileID: 8905817569201706849, guid: 72bd068c9ae70dc4bb16cbeec4e58449, type: 3}
     dropRate: 50
   dropChance: 0.5
+--- !u!114 &4099257449447745721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071547721201204414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48aac5d86967c5842b5ac3aaf2e992a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: e310dd0b2e33414418bd8892c1812e29, type: 2}
+  target: {fileID: 0}
+  defensePlan: {fileID: 0}
+  patrolPosition: {x: 0, y: 0, z: 0}
+  roamPosition: {x: 0, y: 0, z: 0}
+  state: 0

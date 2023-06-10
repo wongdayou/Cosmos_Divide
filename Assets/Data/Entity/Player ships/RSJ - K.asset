@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284331ec2a9b9ca49b6ad2dd62bc3262, type: 3}
   m_Name: RSJ - K
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 50
   load: 1
   cost: 500
   description: One of the royal space jets bestowed to fighter pilots that have demonstrated

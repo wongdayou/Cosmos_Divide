@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284331ec2a9b9ca49b6ad2dd62bc3262, type: 3}
   m_Name: ISS-4
   m_EditorClassIdentifier: 
-  maxHealth: 1500
+  maxHealth: 2000
   load: 200
   cost: 150000
   description: The fourth edition of the International Space Station. Equipped with
